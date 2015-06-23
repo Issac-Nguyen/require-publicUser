@@ -10,7 +10,22 @@
     
 </head>
 <body>
-     <div data-role="view" id="home-view" data-title="Hello World!"
+    
+    <div data-role="layout" data-id="layoutMain" data-title="layoutMain">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Layout</span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a data-icon="contacts" href="views/home.html">Profile</a>
+                <a data-icon="settings" href="views/settings.html">Settings</a>
+            </div>
+        </footer>
+    </div>
+    
+     <div data-role="view" data-layout="layoutMain" data-id="home-view" data-title="Profile"
             data-model="app.views.home.viewModel">
             <h1 data-bind="text: message"></h1>
      </div>

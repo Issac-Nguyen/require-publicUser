@@ -1,13 +1,14 @@
-define(["jQuery", "kendo", "app/views/home", "app/phonegap/phonegap"], function($, kendo, homeView, phonegapAPI) {
+define(["jQuery", "kendo", "app/views/base", "app/phonegap/phonegap"], function($, kendo, baseView, phonegapAPI) {
     var _kendoApplication;
     
     return {
         init: function() {
             _kendoApplication = new kendo.mobile.Application(document.body, { transition: "slide" });
-            phonegapAPI.createContact({"displayName": "aaaaaaa"})
+            //phonegapAPI.createContact({"displayName": "aaaaaaa"})
         },
         views: {
-            home: homeView
+            home: baseView.homeView,
+            settings: baseView.settingsView
         },
         
     }
