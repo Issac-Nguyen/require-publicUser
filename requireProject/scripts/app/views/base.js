@@ -1,6 +1,7 @@
-define(["./home", "./settings"], function(homeView, settingsView){
+define(["./profile", "./settings", "./defects"], function(profileView, settingsView, defectsView){
     return {
-        homeView: homeView,
-        settingsView: settingsView
+        profileView: profileView,
+        settingsView: settingsView,
+        defectsView: defectsView
     }
 });

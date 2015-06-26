@@ -19,15 +19,17 @@
         </header>
         <footer data-role="footer">
             <div data-role="tabstrip">
-                <a data-icon="contacts" href="views/home.html">Profile</a>
+                <a data-icon="contacts" href="views/defects.html">Profile</a>
                 <a data-icon="settings" href="views/settings.html">Settings</a>
             </div>
         </footer>
     </div>
     
-     <div data-role="view" data-layout="layoutMain" data-id="home-view" data-title="Profile"
-            data-model="app.views.home.viewModel">
-            <h1 data-bind="text: message"></h1>
+     <div data-role="view" data-layout="layoutMain" data-id="defect-view" data-title="Defects"
+         data-init="app.views.defects.init"
+            data-model="app.views.defects.viewModel">
+            <canvas id="sheet" width="300" height="350"/>
+
      </div>
 </body>
 </html>

@@ -7,8 +7,9 @@ define(["jQuery", "kendo", "app/views/base", "app/phonegap/phonegap"], function(
             //phonegapAPI.createContact({"displayName": "aaaaaaa"})
         },
         views: {
-            home: baseView.homeView,
-            settings: baseView.settingsView
+            profile: baseView.profileView,
+            settings: baseView.settingsView,
+            defects: baseView.defectsView
         },
         
     }
