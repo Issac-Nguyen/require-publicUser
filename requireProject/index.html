@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <link href="scripts/libs/kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+	<title> Title for requirejs </title>
     <script src="cordova.js"></script>
-    <script data-main="scripts/main" src="scripts/libs/require.js"></script>
-    
-</head>
-<body>
-    
-    <div data-role="layout" data-id="layoutMain" data-title="layoutMain">
-        <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title">Layout</span>
-            </div>
-        </header>
-        <footer data-role="footer">
-            <div data-role="tabstrip">
-                <a data-icon="contacts" href="views/defects.html">Profile</a>
-                <a data-icon="settings" href="views/settings.html">Settings</a>
-            </div>
-        </footer>
-    </div>
-    
-     <div data-role="view" data-layout="layoutMain" data-id="defect-view" data-title="Defects"
-         data-init="app.views.defects.init"
-            data-model="app.views.defects.viewModel">
-            <canvas id="sheet" width="300" height="350"/>
+	<script data-main="scripts/main" src="scripts/libs/require.js"></script>
+	<link rel="stylesheet" href="./public/styles/kendo.mobile.all.min.css">
+	</head>
+	<body>
 
-     </div>
-</body>
+<!-- Layout for all -->
+<div data-role="layout" data-id="mobile-tabstrip">
+    <header data-role="header">
+        <div data-role="navbar">
+            <!-- <a class="nav-button" data-align="left" data-role="backbutton">Back</a> -->
+            <span data-role="view-title"></span>
+            <!--<a data-align="right" data-role="button" class="nav-button" href="#/">Index</a> -->
+        </div>
+    </header>
+
+    <p>TabStrip</p>
+
+    <div data-role="footer">
+        <div data-role="tabstrip">
+            <a href="#defects-view" class="tabstrip-border" data-icon="defects">Profile</a>
+            <a href="./views/report.html" class="tabstrip-border" data-icon="report">Report</a>
+            <a href="./views/setting.html" class="tabstrip-border" data-icon="settings">Setting</a>
+        </div>
+    </div>
+</div>
+
+<!-- View -->
+<div data-role="view" id="defects-view" data-title="Defects"
+		data-layout="mobile-tabstrip"
+        data-init="app.views.defects.init"
+        data-after-show="app.views.defects.afterShow"
+    data-model="app.views.defects.viewModel">
+     <header data-role="header">
+        <div data-role="navbar">
+            <!-- <a class="nav-button" data-align="left" data-role="backbutton">Back</a> -->
+            <span data-role="view-title"></span>
+            <a data-align="right" data-role="button" class="nav-button" href="views/newDefect.html">New Defect</a>
+        </div>
+    </header>
+    <ul id="listDefects"></ul>
+</div>
+      
+	</body>
 </html>
