@@ -1,8 +1,12 @@
-define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/helper'], function(kendo, phonegap, baseTemplate, helper) {
+define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/common', '../common/helper'], function(kendo, phonegap, baseTemplate, common, helper) {
 
 	return {
 		init: function(initEvt) {
 			// ... init event code ...
+            //var width = common.windowWidth,
+			//	height = common.windowHeight - common.heightHeader;
+            //this.viewModel.set('widthImage', width);
+            //this.viewModel.set('heightImage', height);
 		},
 
 		beforeShow: function(beforeShowEvt) {

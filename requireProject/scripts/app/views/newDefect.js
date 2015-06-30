@@ -31,14 +31,14 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', './imageDeta
 			addImage: function() {
 				var self = this;
 				phonegap.capturePicture(function(dataURL) {
-					// self.source.push({dataURL: dataURL});
+					 //self.source.push({dataURL: dataURL});
 					$("#listImage").data("kendoMobileListView").dataSource.add({
 						dataURL: dataURL
 					});
 				});
-				// $("#listImage").data("kendoMobileListView").dataSource.add({
-				// 	dataURL: '2'
-				// });
+				 //$("#listImage").data("kendoMobileListView").dataSource.add({
+				 //	dataURL: "public/images//test.jpg"
+				 //});
 			}
 		}),
 	}
