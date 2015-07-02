@@ -1,4 +1,4 @@
-define(['jQuery', 'kendo', 'app/views/baseView'], function($, kendo, baseView) {
+define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/database'], function($, kendo, baseView, database) {
 	var _kendoApplication;
 
 	return {
@@ -6,6 +6,7 @@ define(['jQuery', 'kendo', 'app/views/baseView'], function($, kendo, baseView) {
 			return _kendoApplication;
 		},
 		init: function() {
+			database.start();
 			kendo.UserEvents.defaultThreshold(20);
 			_kendoApplication = new kendo.mobile.Application(document.body, {
 				transition: 'slide'

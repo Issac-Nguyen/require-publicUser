@@ -15,15 +15,44 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li id="profileUser">
                 Profile
                 <ul>
                     <span class="description-span">Please input your information for getting our best service</span>
                     <li>
-                        Name
-                        <input type="text" data-bind="value: vlname" placeholder="name" />
+                        <label class="km-label-above">
+                            Company ID
+                            <input type="text" name="companyID" id="companyID" data-bind="value: vlname" placeholder="Computer ID" />
+                        </label>
+                        
                     </li>
+                    <li>
+                        <label class="km-label-above">
+                            Company Password
+                        <input type="password" name="companyPassword" id="companyPassword" data-bind="value: vlname" placeholder="Computer Password" />
+                        </label>
+                    </li>
+                    <li>
+                        <label class="km-label-above">
+                             User Name
+                        <input type="text" name="username" id="username" data-bind="value: vlname" placeholder="name" />
+                        </label>
+                    </li>
+                    <li>
+                        <label class="km-label-above">
+                            Email
+                        <input type="email" name="email" id="email" data-bind="value: vlname" placeholder="email@abc.com" />
+                        </label>
+                    </li>
+                    <li>
+                        <label class="km-label-above">
+                            Contact Number
+                        <input type="tel" name="contactNo" id="contactNo" data-bind="value: vlname" placeholder="Contact Number" />
+                        </label>
+                    </li>
+                
                 </ul>
+                <a data-role="button" class="button-middle" data-bind="events:{click: saveProfile}">Save</a>
             </li>
         </ul>
     </section>

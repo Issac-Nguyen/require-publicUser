@@ -362,3 +362,7 @@ body, html {
     padding: 5px 20%;
     font-size: 12px;
 }
+
+.button-middle {
+    width: 90%; margin: 10px auto; display: block
+}

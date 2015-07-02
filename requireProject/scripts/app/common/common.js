@@ -5,6 +5,7 @@ define([], function() {
     var objIntervalProcessDefect;
 
 	return {
+		deviceUUID: 'ID',
 		pixelRatio: pixelRatio,
 		windowWidth: windowWidth,
 		windowHeight: windowHeight,
