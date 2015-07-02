@@ -356,3 +356,9 @@ body, html {
         background-size: 100%;
     }
 }
+
+.description-span {
+    display: block;
+    padding: 5px 20%;
+    font-size: 12px;
+}

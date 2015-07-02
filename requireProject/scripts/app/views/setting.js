@@ -14,6 +14,7 @@ define(['kendo', '../common/helper'], function(kendo, helper) {
 
 		viewModel: kendo.observable({
 			message: 'setting',
+            vlname: 'name',
             onChangeAutoProcessDefect: function(e) {
                 helper.handleProcessDefect(e.checked);
             }
