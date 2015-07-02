@@ -2,8 +2,18 @@
 
 <!-- View -->
 <div data-role="view" id="setting-view" data-title="Setting"
-        data-layout="mobile-tabstrip"
-    data-model="app.views.setting.viewModel">
-    <h1 data-bind="text: message" ></h1>
+     data-layout="mobile-tabstrip"
+     data-model="app.views.setting.viewModel">
+    <section>
+        <ul data-role="listview" data-style="inset" data-type="group">
+            <li>
+                Defects
+                <ul>
+                    <li>Auto process defects <input type="checkbox" data-role="switch" data-bind="events: { change: onChangeAutoProcessDefect }"/></li> 
+                </ul>
+            </li>
+        </ul>
+    </section>
+
 </div>
     

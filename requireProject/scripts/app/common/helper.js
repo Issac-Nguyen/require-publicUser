@@ -1,4 +1,17 @@
 define(['./common'], function(common) {
+    var AutoprocessDefect = function() {
+        console.log('on');
+    }
+    
+    var registerProcessDefect = function() {
+        common.objIntervalProcessDefect = setInterval(AutoprocessDefect, common.intervalProcessDefect);
+    }
+    
+    var cancelProcessDefect = function() {
+        console.log('off');
+        clearInterval(common.objIntervalProcessDefect);
+    }
+    
     return {
         handlerErr: function(err) {
             alert(err);
@@ -169,12 +182,14 @@ define(['./common'], function(common) {
             img.onload = function() {
                 context.drawImage(img, 0, 0, width, height);
                 //context.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
-                setTimeout(function(){angle += 90;self.drawRotated(canvas, img, angle);}, 0);
-                
+                setTimeout(function() {
+                    angle += 90;
+                    self.drawRotated(canvas, img, angle);
+                }, 0);
             }
         },
         drawRotated: function (canvas, image, degrees) {
-             var context = canvas.getContext("2d");
+            var context = canvas.getContext("2d");
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             // save the unrotated context of the canvas so we can restore it later
@@ -193,6 +208,12 @@ define(['./common'], function(common) {
 
             // we’re done with the rotating so restore the unrotated context
             context.restore();
+        },
+        handleProcessDefect: function(onOff) {
+            if (onOff)
+                registerProcessDefect();
+            else
+                cancelProcessDefect();
         }
     }
 });

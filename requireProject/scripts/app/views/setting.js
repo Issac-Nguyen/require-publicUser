@@ -1,4 +1,4 @@
-define(['kendo'], function(kendo) {
+define(['kendo', '../common/helper'], function(kendo, helper) {
 	return {
 		init: function(initEvt) {
 			// ... init event code ...
@@ -13,7 +13,10 @@ define(['kendo'], function(kendo) {
 		},
 
 		viewModel: kendo.observable({
-			message: 'setting'
+			message: 'setting',
+            onChangeAutoProcessDefect: function(e) {
+                helper.handleProcessDefect(e.checked);
+            }
 		}),
 	}
 });
