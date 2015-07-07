@@ -16,7 +16,7 @@ define(['./common'], function(common) {
         handlerErr: function(err) {
             alert(err);
         },
-        datetimeString: function() {
+        timestampString: function() {
             return Math.floor(Date.now());
         },
         initDrawonCanvas: function(canvasID) {

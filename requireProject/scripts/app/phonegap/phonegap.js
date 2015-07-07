@@ -12,7 +12,7 @@ define(['../common/helper', '../common/common'], function(helper, common) {
                                         exclusive: false
                                     },
                                     function(directory) {
-                                        fileEntry.moveTo(directory, helper.datetimeString() + '.jpg', function(etr) {
+                                        fileEntry.moveTo(directory, helper.timestampString() + '.jpg', function(etr) {
                                             // self.lstImg.push({
                                             //     dataURL: etr.fullPath.substr(1)
                                             // });
