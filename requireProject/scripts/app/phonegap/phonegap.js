@@ -1,8 +1,8 @@
 define(['../common/helper', '../common/common'], function(helper, common) {
 
-	return {
-		capturePicture: function(callback) {
-			try {
+    return {
+        capturePicture: function(callback) {
+            try {
                 navigator.camera.getPicture(function(imageData) {
                     window.resolveLocalFileSystemURI(imageData, function(fileEntry) {
                         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
@@ -30,6 +30,20 @@ define(['../common/helper', '../common/common'], function(helper, common) {
             } catch (err) {
                 alert(err);
             }
-		}
-	}
+        },
+        afterShowImageDetail: function(url, canvas) {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+                fileSystem.root.getFile(url, {
+                    create: true,
+                    exclusive: false
+                }, function(fileEntry) {
+                    fileEntry.createWriter(function(writer) {
+                        alert(canvas.toDataURL('image/jpeg', 1));
+                        writer.write(helper.convertDataURIToBlob(canvas.toDataURL('image/jpeg', 1), 'image/jpeg'));
+                    }, helper.handlerErr);
+                }, helper.handlerErr);
+            }, helper.handlerErr);
+
+        }
+    }
 });

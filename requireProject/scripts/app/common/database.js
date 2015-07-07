@@ -29,6 +29,28 @@ define([], function() {
         // }
     }
 
+    function updateObj(model, data, successCallback) {
+        var transaction = db.transaction([model], IDBTransaction.READ_WRITE || 'readwrite'),
+            store, i, request, total = data.length;
+
+        function successCallbackInner() {
+            total = total - 1;
+            if (total === 0) {
+                if (successCallback)
+                    successCallback();
+            }
+        }
+        transaction.onerror = indexedDBError;
+        store = transaction.objectStore(model);
+        // for (i in data) {
+        //  if (data.hasOwnProperty(i)) {
+        request = store.put(data);
+        request.onsuccess = successCallbackInner;
+        request.onerror = indexedDBError;
+        //  }
+        // }
+    }
+
     function deleteAllFrom(model, successCallback) {
         var transaction = db.transaction([model], IDBTransaction.READ_WRITE || 'readwrite'),
             store, request;

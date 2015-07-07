@@ -2,16 +2,16 @@ define(['./common'], function(common) {
     var AutoprocessDefect = function() {
         console.log('on');
     }
-    
+
     var registerProcessDefect = function() {
         common.objIntervalProcessDefect = setInterval(AutoprocessDefect, common.intervalProcessDefect);
     }
-    
+
     var cancelProcessDefect = function() {
         console.log('off');
         clearInterval(common.objIntervalProcessDefect);
     }
-    
+
     return {
         handlerErr: function(err) {
             alert(err);
@@ -27,14 +27,14 @@ define(['./common'], function(common) {
 
             if (dd < 10) {
                 dd = '0' + dd
-            } 
+            }
 
             if (mm < 10) {
                 mm = '0' + mm
-            } 
+            }
 
             today = mm + '/' + dd + '/' + yyyy;
-            
+
             return today;
         },
         currentTime: function() {
@@ -45,18 +45,18 @@ define(['./common'], function(common) {
 
             if (hh < 10) {
                 hh = '0' + dd
-            } 
+            }
 
             if (mm < 10) {
                 mm = '0' + mm
-            } 
-            
+            }
+
             if (ss < 10) {
                 ss = '0' + mm
-            } 
+            }
 
             time = hh + ':' + mm + ':' + ss;
-            
+
             return time;
         },
         initDrawonCanvas: function(canvasID) {
@@ -228,7 +228,7 @@ define(['./common'], function(common) {
                 }, 0);
             }
         },
-        drawRotated: function (canvas, image, degrees) {
+        drawRotated: function(canvas, image, degrees) {
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -254,6 +254,36 @@ define(['./common'], function(common) {
                 registerProcessDefect();
             else
                 cancelProcessDefect();
+        },
+        convertDataURIToBlob: function(dataURI, mimetype) {
+            var BASE64_MARKER = ';base64,';
+            var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+            var base64 = dataURI.substring(base64Index);
+            var raw = window.atob(base64);
+            var rawLength = raw.length;
+            var uInt8Array = new Uint8Array(rawLength);
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+            // var bb = new BlobBuilder();
+            // bb.append(uInt8Array.buffer);
+
+            try {
+                return new Blob([uInt8Array.buffer], {
+                    type: mimetype
+                });
+            } catch (e) {
+                // The BlobBuilder API has been deprecated in favour of Blob, but older
+                // browsers don't know about the Blob constructor
+                // IE10 also supports BlobBuilder, but since the `Blob` constructor
+                //  also works, there's no need to add `MSBlobBuilder`.
+                alert(e);
+                var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+                var bb = new BlobBuilder();
+                bb.append(uInt8Array.buffer);
+                return bb.getBlob(mimetype);
+            }
+            // return bb.getBlob(mimetype); 
         }
     }
 });

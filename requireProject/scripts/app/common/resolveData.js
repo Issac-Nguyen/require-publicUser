@@ -1,3 +1,21 @@
-define([], function() {
-   //http://stackoverflow.com/questions/18704326/how-to-use-requirejs-to-work-with-ajax-callbacks 
+define(["jQuery"], function($) {
+	function renderData() {
+		console.log("inside callback");
+	}
+
+	function getData(options) {
+		$.ajax({
+			url: options.apiURL,
+			dataType: options.format,
+			method: options.method,
+			jsonpCallback: options.jsonpCallback,
+			success: options.successCallback || renderData,
+			error: null,
+			timeout: options.timeout
+		});
+	}
+
+	return {
+		getData: getData
+	}
 });
