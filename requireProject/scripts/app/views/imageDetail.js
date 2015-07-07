@@ -6,7 +6,7 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/c
             //	height = common.windowHeight - common.heightHeader;
             //this.viewModel.set('widthImage', width);
             //this.viewModel.set('heightImage', height);
-            this.model.set('id', helper.timestampString());
+            //this.model.set('id', helper.timestampString());
         },
 
         beforeShow: function(beforeShowEvt) {
@@ -29,6 +29,7 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/c
                                         dataURL: '',
                                     }),
         setDataIntoView: function(obj) {
+            this.viewModel.set('id', obj.id);
             this.viewModel.set('dataURL', obj.dataURL);
         }
     }

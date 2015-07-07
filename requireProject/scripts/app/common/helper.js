@@ -19,6 +19,46 @@ define(['./common'], function(common) {
         timestampString: function() {
             return Math.floor(Date.now());
         },
+        currentDate: function() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            } 
+
+            if (mm < 10) {
+                mm = '0' + mm
+            } 
+
+            today = mm + '/' + dd + '/' + yyyy;
+            
+            return today;
+        },
+        currentTime: function() {
+            var time = new Date();
+            var hh = time.getHours();
+            var mm = time.getMinutes();
+            var ss = time.getSeconds();
+
+            if (hh < 10) {
+                hh = '0' + dd
+            } 
+
+            if (mm < 10) {
+                mm = '0' + mm
+            } 
+            
+            if (ss < 10) {
+                ss = '0' + mm
+            } 
+
+            time = hh + ':' + mm + ':' + ss;
+            
+            return time;
+        },
         initDrawonCanvas: function(canvasID) {
             var canvas = document.getElementById(canvasID);
             var height = common.windowHeight - common.heightHeader;

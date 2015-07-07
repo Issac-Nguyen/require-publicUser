@@ -5,9 +5,9 @@
     data-transition="overlay:up" data-persist="true">
      <header data-role="header">
         <div data-role="navbar">
-            <a class="nav-button" data-align="right" data-role="button" href="#:back" data-bind="events:{click: onClickCancel}" data-transition="overlay:up reverse">Cancel</a>
+            <a class="nav-button" data-align="left" data-role="button" href="#:back" data-bind="events:{click: onClickCancel}" data-transition="overlay:up reverse">Cancel</a>
             <span data-role="view-title" data-bind="text: name"></span>
-            <!--<a data-align="right" data-role="button" class="nav-button" href="#/">Index</a> -->
+            <a data-align="right" data-role="button" class="nav-button" href="#/" data-bind="events:{click: onClickAdd}">Add</a>
         </div>
     </header>
     <h1 data-bind="text: message" ></h1>
