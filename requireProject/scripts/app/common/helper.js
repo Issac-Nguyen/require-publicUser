@@ -1,4 +1,4 @@
-define(['./common'], function(common) {
+define(['./common', './resolveData'], function(common, resolveData) {
     var AutoprocessDefect = function() {
         console.log('on');
     }
@@ -10,6 +10,10 @@ define(['./common'], function(common) {
     var cancelProcessDefect = function() {
         console.log('off');
         clearInterval(common.objIntervalProcessDefect);
+    }
+
+    function getAllDefectData(successCallback) {
+        resolveData('defects', successCallback);
     }
 
     return {
@@ -284,6 +288,32 @@ define(['./common'], function(common) {
                 return bb.getBlob(mimetype);
             }
             // return bb.getBlob(mimetype); 
+        },
+        getAllDefectData: getAllDefectData,
+        goBack: function() {
+            app.getAppObj().navigate("#:back");
+        },
+        destroyCurrentView: function() {
+            app.getAppObj().view().destroy();
+        },
+        resetModel: function(VM, options, cb) {
+            if(!options)
+                return;
+            for (i in options) {
+                switch(options[i]) {
+                    case "String":
+                        VM.set(i, '');
+                        break;
+                    case "Number":
+                        VM.set(i, 0);
+                        break;
+                    case "Array":
+                        VM.set(i, []);
+                        break;
+                }
+            };
+            if(cb)
+                cb();
         }
     }
 });

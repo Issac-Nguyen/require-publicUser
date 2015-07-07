@@ -12,11 +12,11 @@ define([], function() {
             store, i, request, total = data.length;
 
         function successCallbackInner() {
-            total = total - 1;
-            if (total === 0) {
+            // total = total - 1;
+            // if (total === 0) {
                 if (successCallback)
                     successCallback();
-            }
+            // }
         }
         transaction.onerror = indexedDBError;
         store = transaction.objectStore(model);
@@ -34,11 +34,11 @@ define([], function() {
             store, i, request, total = data.length;
 
         function successCallbackInner() {
-            total = total - 1;
-            if (total === 0) {
+            // total = total - 1;
+            // if (total === 0) {
                 if (successCallback)
                     successCallback();
-            }
+            // }
         }
         transaction.onerror = indexedDBError;
         store = transaction.objectStore(model);
@@ -119,13 +119,13 @@ define([], function() {
             }
             // TODO This is strictly model logic, and ought not live inside the indexedDB library, should move.
             db.createObjectStore("defects", {
-                                     keyPath: "id",
-                                     autoIncrement: true
-                                 });
+                keyPath: "id",
+                autoIncrement: true
+            });
 
             db.createObjectStore("profile", {
-                                     autoIncrement: true
-                                 });
+                autoIncrement: true
+            });
         }
         request.onsuccess = function(event) {
             var setVersionRequest;

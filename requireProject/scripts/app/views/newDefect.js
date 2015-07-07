@@ -16,8 +16,7 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                     imageDetailView.setDataIntoView(item);
                 }
             });
-            //get id of defect
-            this.model.set('id', helper.timestampString());
+
         },
 
         beforeShow: function(beforeShowEvt) {
@@ -26,21 +25,36 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
 
         show: function(showEvt) {
             // ... show event code ...
+            //get id of defect
+            if (this.model.get('id') == '')
+                this.model.set('id', helper.timestampString());
         },
 
         viewModel: kendo.observable({
             id: '',
             message: 'new Defect',
             onClickCancel: function(e) {
-                app.getAppObj().view().destroy();
+                helper.resetModel(this, {
+                    id: 'String'
+                }, function() {
+                    $("#listImage").data("kendoMobileListView").dataSource.data([]);
+                });
             },
             onClickAdd: function(e) {
+                var self = this;
                 var objDefect = {};
                 objDefect.id = this.get('id');
                 objDefect.defectsArr = $("#listImage").data("kendoMobileListView").dataSource.data().toJSON();
                 objDefect.createdDate = helper.currentDate();
                 objDefect.createdTime = helper.currentTime();
-                database.insertInto('defects', objDefect, this.onClickCancel);
+                database.insertInto('defects', objDefect, function() {
+                    helper.resetModel(self, {
+                        id: 'String'
+                    }, function() {
+                        $("#listImage").data("kendoMobileListView").dataSource.data([]);
+                    });
+                    helper.goBack();
+                });
             },
             addImage: function(e) {
                 var self = this;

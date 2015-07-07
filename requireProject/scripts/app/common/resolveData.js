@@ -1,9 +1,9 @@
-define(["jQuery"], function($) {
+define(["jQuery", './database'], function($, database) {
 	function renderData() {
 		console.log("inside callback");
 	}
 
-	function getData(options) {
+	function getDataAjax(options) {
 		$.ajax({
 			url: options.apiURL,
 			dataType: options.format,
@@ -15,7 +15,12 @@ define(["jQuery"], function($) {
 		});
 	}
 
+	function getDataIndexedDB(model, successCallback) {
+		database.selectAll(model, successCallback);
+	}
+
 	return {
-		getData: getData
+		getDataAjax: getDataAjax,
+		getDataIndexedDB: getDataIndexedDB
 	}
 });
