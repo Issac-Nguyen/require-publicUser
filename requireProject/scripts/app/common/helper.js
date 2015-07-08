@@ -19,6 +19,14 @@ define(['./common', './resolveData', './database'], function(common, resolveData
     function initDatabase(cb) {
         database.start(cb);
     }
+    
+    function setLocalStorage(pro, vl) {
+        localStorage[pro] =  vl;
+    }
+    
+    function getLocalStorage(pro) {
+        return localStorage[pro];
+    }
 
     return {
         handlerErr: function(err) {
@@ -319,6 +327,8 @@ define(['./common', './resolveData', './database'], function(common, resolveData
             if(cb)
                 cb();
         },
-        initDatabase: initDatabase
+        initDatabase: initDatabase,
+        setLocalStorage: setLocalStorage,
+        getLocalStorage: getLocalStorage
     }
 });

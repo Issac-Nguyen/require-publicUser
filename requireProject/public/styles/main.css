@@ -372,3 +372,11 @@ body, html {
     color: red;
     font-size: 12px;
 }
+
+.km-label-above {
+    font-size: 12px;
+}
+
+.font12size {
+    font-size: 12px !important;
+}
