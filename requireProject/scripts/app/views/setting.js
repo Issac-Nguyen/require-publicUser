@@ -31,7 +31,7 @@ define(['jQuery', 'kendo', '../common/helper'], function($, kendo, helper) {
         },
 
         viewModel: kendo.observable({
-                                        message: 'setting',
+                                        message: 'settings',
                                         isAutoProcessDefect: false,
                                         companyID: '',
                                         companyPassword: '',
