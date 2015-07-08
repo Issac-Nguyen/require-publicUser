@@ -1,4 +1,4 @@
-define(['./common', './resolveData'], function(common, resolveData) {
+define(['./common', './resolveData', './database'], function(common, resolveData, database) {
     var AutoprocessDefect = function() {
         console.log('on');
     }
@@ -13,7 +13,11 @@ define(['./common', './resolveData'], function(common, resolveData) {
     }
 
     function getAllDefectData(successCallback) {
-        resolveData('defects', successCallback);
+        resolveData.getDataIndexedDB('defects', successCallback);
+    }
+    
+    function initDatabase(cb) {
+        database.start(cb);
     }
 
     return {
@@ -314,6 +318,7 @@ define(['./common', './resolveData'], function(common, resolveData) {
             };
             if(cb)
                 cb();
-        }
+        },
+        initDatabase: initDatabase
     }
 });

@@ -1,10 +1,10 @@
 <!-- View -->
 <div data-role="view" id="report-view" data-title="New Defect"
-    data-model="app.views.newDefect.viewModel"
+     data-model="app.views.newDefect.viewModel"
      data-init="app.views.newDefect.init"
      data-show="app.views.newDefect.show"
-    data-transition="overlay:up" data-persist="true">
-     <header data-role="header">
+     data-transition="overlay:up" data-persist="true">
+    <header data-role="header">
         <div data-role="navbar">
             <a class="nav-button" data-align="left" data-role="button" href="#:back" data-bind="events:{click: onClickCancel}" data-transition="overlay:up reverse">Cancel</a>
             <span data-role="view-title" data-bind="text: name"></span>
@@ -12,6 +12,21 @@
         </div>
     </header>
     <h1 data-bind="text: message" ></h1>
+    <form id="form-newDefect">
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <label>
+                    Name
+                    <input name="name" id="name" type="text" data-bind="value: name" required validationMessage="Enter {0}" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    Description <textarea name="description" data-bind="text: description" id="description" style="resize: none"></textarea>
+                </label>
+            </li>
+        </ul>
+    </form>
     <img src="public/images/image_add.png" alt="add_image" data-bind="events:{click: addImage}"/>
     <ul id="listImage"></ul>
 </div>

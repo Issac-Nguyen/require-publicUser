@@ -366,3 +366,9 @@ body, html {
 .button-middle {
     width: 90%; margin: 10px auto; display: block
 }
+
+.k-invalid-msg {
+    display: block;
+    color: red;
+    font-size: 12px;
+}

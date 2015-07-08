@@ -13,6 +13,7 @@ define([], function() {
 		folderImage: 'imgDefects',
         objIntervalProcessDefect: objIntervalProcessDefect,
         intervalProcessDefect: 1000,
-        maximumImageCapture: 1
+        maximumImageCapture: 1,
+        defectsList: []
 	}
 });
