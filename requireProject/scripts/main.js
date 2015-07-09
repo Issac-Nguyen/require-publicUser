@@ -1,7 +1,8 @@
 require.config({
                    paths:{
         jQuery: "libs/jquery-1.10.2.min",
-        kendo: "libs/kendo.mobile.min"
+        underscore: "libs/underscore-min",
+        kendo: "libs/kendo.all.min",
     },
                    shim: {
         jQuery: {
@@ -10,7 +11,10 @@ require.config({
         kendo: {
                                deps: ["jQuery"],
                                exports: "kendo"
-                           }
+                           },
+        underscore: {
+                               exports: "underscore"
+                           },
     }
                });
 

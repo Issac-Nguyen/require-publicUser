@@ -1,4 +1,4 @@
-define(['./common', './resolveData', './database'], function(common, resolveData, database) {
+define(['./common', './resolveData', './database', './pubsub'], function(common, resolveData, database, pubsub) {
     var AutoprocessDefect = function() {
         console.log('on');
     }
@@ -21,11 +21,25 @@ define(['./common', './resolveData', './database'], function(common, resolveData
     }
     
     function setLocalStorage(pro, vl) {
-        localStorage[pro] =  vl;
+        localStorage[pro] = vl;
     }
     
     function getLocalStorage(pro) {
         return localStorage[pro];
+    }
+    
+    function handleProcessDefect(onOff) {
+        onOff = onOff == "true"? 1 : 0;
+        if (onOff)
+            registerProcessDefect();
+        else
+            cancelProcessDefect();
+    }
+    
+    function handleAutoProcessDefect() {
+        if (getLocalStorage('isAutoProcessDefect')) {
+            handleProcessDefect(getLocalStorage('isAutoProcessDefect'));
+        }
     }
 
     return {
@@ -265,12 +279,7 @@ define(['./common', './resolveData', './database'], function(common, resolveData
             // we’re done with the rotating so restore the unrotated context
             context.restore();
         },
-        handleProcessDefect: function(onOff) {
-            if (onOff)
-                registerProcessDefect();
-            else
-                cancelProcessDefect();
-        },
+        handleProcessDefect: handleProcessDefect,
         convertDataURIToBlob: function(dataURI, mimetype) {
             var BASE64_MARKER = ';base64,';
             var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
@@ -286,8 +295,8 @@ define(['./common', './resolveData', './database'], function(common, resolveData
 
             try {
                 return new Blob([uInt8Array.buffer], {
-                    type: mimetype
-                });
+                                    type: mimetype
+                                });
             } catch (e) {
                 // The BlobBuilder API has been deprecated in favour of Blob, but older
                 // browsers don't know about the Blob constructor
@@ -309,10 +318,10 @@ define(['./common', './resolveData', './database'], function(common, resolveData
             app.getAppObj().view().destroy();
         },
         resetModel: function(VM, options, cb) {
-            if(!options)
+            if (!options)
                 return;
             for (i in options) {
-                switch(options[i]) {
+                switch (options[i]) {
                     case "String":
                         VM.set(i, '');
                         break;
@@ -323,12 +332,14 @@ define(['./common', './resolveData', './database'], function(common, resolveData
                         VM.set(i, []);
                         break;
                 }
-            };
-            if(cb)
+            }
+            if (cb)
                 cb();
         },
         initDatabase: initDatabase,
         setLocalStorage: setLocalStorage,
-        getLocalStorage: getLocalStorage
+        getLocalStorage: getLocalStorage,
+        handleAutoProcessDefect: handleAutoProcessDefect,
+        processAllInSubDefect: pubsub.processAllInSubDefect
     }
 });

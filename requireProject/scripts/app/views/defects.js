@@ -1,15 +1,4 @@
-define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/common'], function($, kendo, baseTemplate, defectView, common) {
-    var groupedData = [{
-            name: "foo",
-            description: 'des foo'
-        }, {
-            name: "bar",
-            description: 'des bar'
-        }, {
-            name: "baz",
-            description: 'des baz'
-        }
-    ];
+define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/common', '../common/helper'], function($, kendo, baseTemplate, defectView, common, helper) {
     
     var groupedData1 = [
         {id: 1, name: "Sashimi salad", createdDate: "07/07/2015", createdDate1: "20150707" },
@@ -35,7 +24,11 @@ define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/com
     return {
         init: function(initEvt) {
             $("#listDefects").kendoMobileListView({
-                                                      dataSource: kendo.data.DataSource.create({data: [], group: {field: "createdDate", dir: "desc"}}),
+                                                      dataSource: kendo.data.DataSource.create({
+                                                                                                   data: [],
+                                                                                                   group: {field: "createdDate", dir: "desc"},
+                                                                                                   change: helper.processAllInSubDefect
+                                                                                               }),
                                                       template: baseTemplate.templateDefect,
                                                       filterable: {
                     field: "name"

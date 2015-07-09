@@ -16,8 +16,9 @@ define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper','app/common
                     this.showLoading();
                     helper.initDatabase(function(){
                         helper.getAllDefectData(function(data){
-                            //common.defectsList = data;
+                            common.defectsList = data;
                             self.view().model.initDefectsList(data);
+                            helper.handleAutoProcessDefect();
                             self.hideLoading();});
                           
                     });

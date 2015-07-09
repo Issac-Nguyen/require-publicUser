@@ -39,7 +39,7 @@ define(['jQuery', 'kendo', '../common/helper'], function($, kendo, helper) {
                                         email: '',
                                         contactNo: '',
                                         onChangeAutoProcessDefect: function(e) {
-                                            helper.handleProcessDefect(e.checked);
+                                            helper.handleProcessDefect(e.checked.toString());
                                             helper.setLocalStorage('isAutoProcessDefect', e.checked);
                                         },
                                         saveProfile: function(e) {
