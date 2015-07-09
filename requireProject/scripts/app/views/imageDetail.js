@@ -20,14 +20,19 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/c
             // alert(app);
             helper.initDrawonCanvas('imgDetail');
             helper.drawImageOnCanvas(dataURL, 'imgDetail');
-                
+
         },
 
         viewModel: kendo.observable({
-                                        id: '',
-                                        name: '',
-                                        dataURL: '',
-                                    }),
+            id: '',
+            name: '',
+            dataURL: '',
+
+            onClickBack: function(e) {
+                phonegap.writeImageIntoSystem(this.get('dataURL'), $("imgDetail")[0], helper.goBack());
+
+            },
+        }),
         setDataIntoView: function(obj) {
             this.viewModel.set('id', obj.id);
             this.viewModel.set('dataURL', obj.dataURL);

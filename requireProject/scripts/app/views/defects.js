@@ -1,5 +1,5 @@
 define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/common', '../common/helper'], function($, kendo, baseTemplate, defectView, common, helper) {
-    
+
     //var groupedData1 = [
     //    {id: 1, name: "Sashimi salad", createdDate: "07/07/2015", createdDate1: "20150707" },
     //    {id: 2, name: "Chirashi sushi", createdDate: "07/07/2015", createdDate1: "20150707" },
@@ -24,20 +24,23 @@ define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/com
     return {
         init: function(initEvt) {
             $("#listDefects").kendoMobileListView({
-                                                      dataSource: kendo.data.DataSource.create({
-                                                                                                   data: [],
-                                                                                                   group: {field: "createdDate", dir: "desc"},
-                                                                                                   change: helper.processAllInSubDefect
-                                                                                               }),
-                                                      template: baseTemplate.templateDefect,
-                                                      filterable: {
+                dataSource: kendo.data.DataSource.create({
+                    data: [],
+                    group: {
+                        field: "createdDate",
+                        dir: "desc"
+                    },
+                    change: helper.processAllInSubDefect
+                }),
+                template: baseTemplate.templateDefect,
+                filterable: {
                     field: "name"
                 },
-                                                      click: function(e) {
-                                                          var item = e.dataItem;
-                                                          defectView.setDataDetailToView(item);
-                                                      }
-                                                  });
+                click: function(e) {
+                    var item = e.dataItem;
+                    defectView.setDataDetailToView(item);
+                }
+            });
         },
 
         beforeShow: function(beforeShowEvt) {
@@ -52,17 +55,17 @@ define(['jQuery', 'kendo', './template/baseTemplate', './defect', '../common/com
         },
 
         viewModel: kendo.observable({
-                                        message: 'defects',
-                                        clickNew: function(e) {
-                                            $("#modalview-login").kendoMobileModalView("open");
-                                        },
-                                        initDefectsList: function(data) {
-                                            $("#listDefects").data("kendoMobileListView").dataSource.data(data);
-                                        }
-                                    }),
+            message: 'defects',
+            clickNew: function(e) {
+                $("#modalview-login").kendoMobileModalView("open");
+            },
+            initDefectsList: function(data) {
+                $("#listDefects").data("kendoMobileListView").dataSource.data(data);
+            }
+        }),
         insertIntoListDefects: function(objDefect) {
             $("#listDefects").data("kendoMobileListView").dataSource.add(objDefect);
         },
-       
+
     }
 });

@@ -12,8 +12,9 @@ define([], function() {
        },
        processAllInSubDefect: function(e) {
            for(var i  in arrSubDefect) {
-               if(i.fn)
-                   (i.fn)(e);
+            var item = arrSubDefect[i];
+               if(item.fn)
+                   (item.fn)(e);
            }
        }
    } 

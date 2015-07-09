@@ -31,7 +31,7 @@ define(['../common/helper', '../common/common'], function(helper, common) {
                 alert(err);
             }
         },
-        afterShowImageDetail: function(url, canvas) {
+        writeImageIntoSystem: function(url, canvas, cb) {
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
                 fileSystem.root.getFile(url, {
                     create: true,
@@ -40,6 +40,8 @@ define(['../common/helper', '../common/common'], function(helper, common) {
                     fileEntry.createWriter(function(writer) {
                         alert(canvas.toDataURL('image/jpeg', 1));
                         writer.write(helper.convertDataURIToBlob(canvas.toDataURL('image/jpeg', 1), 'image/jpeg'));
+                        if(cb)
+                            cb();
                     }, helper.handlerErr);
                 }, helper.handlerErr);
             }, helper.handlerErr);

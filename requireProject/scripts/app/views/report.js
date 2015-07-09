@@ -49,7 +49,7 @@ function updateDatasourceChart(e) {
        
         
         //$("#chartDefect").data("kendoChart").setDataSource(datasource);
-         $("#chartDefect").data("kendoChart").refresh();
+         // $("#chartDefect").data("kendoChart").redraw();
     }
     
 }
@@ -87,7 +87,7 @@ function updateDatasourceChart(e) {
                 }
             });
             
-            setTimeout(updateDatasourceChart, 0);
+            updateDatasourceChart();
 		},
 
 		beforeShow: function(beforeShowEvt) {
@@ -96,6 +96,7 @@ function updateDatasourceChart(e) {
 
 		show: function(showEvt) {
 			// ... show event code ...
+            $("#chartDefect").data("kendoChart").refresh();
 		},
 
 		viewModel: kendo.observable({

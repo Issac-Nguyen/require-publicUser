@@ -22,11 +22,11 @@
             </li>
             <li>
                 <label>
-                    Description <textarea name="description" data-bind="text: description" id="description" style="resize: none"></textarea>
+                    Description <textarea name="description" data-bind="value: description" id="description" style="resize: none"></textarea>
                 </label>
             </li>
         </ul>
     </form>
-    <img src="public/images/image_add.png" alt="add_image" data-bind="events:{click: addImage}"/>
+    <img src="public/images/image_add.png" width="50" height="50" alt="add_image" data-bind="events:{click: addImage}"/>
     <ul id="listImage"></ul>
 </div>

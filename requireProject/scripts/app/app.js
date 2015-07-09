@@ -1,4 +1,4 @@
-define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper','app/common/common'], function($, kendo, baseView, helper, common) {
+define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper', 'app/common/common'], function($, kendo, baseView, helper, common) {
 	var _kendoApplication;
 
 	return {
@@ -6,27 +6,28 @@ define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper','app/common
 			return _kendoApplication;
 		},
 		init: function() {
-			
+
 			kendo.UserEvents.defaultThreshold(20);
 			_kendoApplication = new kendo.mobile.Application(document.body, {
 				transition: 'slide',
-                useNativeScrolling: true,
-                init: function() {
-                    var self = this;
-                    this.showLoading();
-                    helper.initDatabase(function(){
-                        helper.getAllDefectData(function(data){
-                            common.defectsList = data;
-                            self.view().model.initDefectsList(data);
-                            helper.handleAutoProcessDefect();
-                            self.hideLoading();});
-                          
-                    });
-                }
+				useNativeScrolling: true,
+				init: function() {
+					var self = this;
+					this.showLoading();
+					// helper.initDatabase(function() {
+						// helper.getAllDefectData(function(data) {
+							// common.defectsList = data;
+							// self.view().model.initDefectsList(data);
+							// helper.handleAutoProcessDefect();
+							self.hideLoading();
+						// });
+
+					// });
+				}
 			});
 
-            
-            
+
+
 		},
 		views: {
 			defects: baseView.defectsView,

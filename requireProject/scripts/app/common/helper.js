@@ -3,6 +3,10 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         console.log('on');
     }
 
+    function handlerErr(err) {
+        alert(err);
+    }
+
     var registerProcessDefect = function() {
         common.objIntervalProcessDefect = setInterval(AutoprocessDefect, common.intervalProcessDefect);
     }
@@ -17,7 +21,7 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
     }
     
     function initDatabase(cb) {
-        database.start(cb);
+        database.start(cb, handlerErr);
     }
     
     function setLocalStorage(pro, vl) {
@@ -43,9 +47,7 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
     }
 
     return {
-        handlerErr: function(err) {
-            alert(err);
-        },
+        handlerErr: handlerErr,
         timestampString: function() {
             return Math.floor(Date.now());
         },
