@@ -340,6 +340,8 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         setLocalStorage: setLocalStorage,
         getLocalStorage: getLocalStorage,
         handleAutoProcessDefect: handleAutoProcessDefect,
-        processAllInSubDefect: pubsub.processAllInSubDefect
+        processAllInSubDefect: pubsub.processAllInSubDefect,
+        addIntoSubDefect: pubsub.addIntoSubDefect,
+        removeFromSubDefect: pubsub.removeFromSubDefect
     }
 });

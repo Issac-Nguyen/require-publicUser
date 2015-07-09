@@ -1,7 +1,6 @@
-define(['kendo', 'underscore', '../common/common'], function(kendo, _, common) {
-	return {
-		init: function(initEvt) {
-            var defectList = common.defectsList;
+define(['kendo', 'underscore', '../common/common', '../common/helper'], function(kendo, _, common, helper) {
+function updateDatasourceChart(e) {
+    var defectList = e.sender.data();
             var i = 1;
             for(var o in defectList) {
                 var item = defectList[o];
@@ -33,6 +32,11 @@ define(['kendo', 'underscore', '../common/common'], function(kendo, _, common) {
                 
                 datasource.push(item);
                 }
+}
+    
+	return {
+		init: function(initEvt) {
+            helper.addIntoSubDefect({id: 'report', fn: updateDatasourceChart});
             
 			// ... init event code ...
             $("#chartDefect").kendoChart({
