@@ -1,6 +1,10 @@
 define(['kendo', 'underscore', '../common/common', '../common/helper'], function(kendo, _, common, helper) {
 function updateDatasourceChart(e) {
-    var defectList = e.sender.data();
+     var defectList;
+    if(e)
+     defectList = e.sender.data();
+    else
+    defectList = $("#listDefects").data("kendoMobileListView").dataSource.data();
             var i = 1;
             for(var o in defectList) {
                 var item = defectList[o];
@@ -32,12 +36,27 @@ function updateDatasourceChart(e) {
                 
                 datasource.push(item);
                 }
+    
+    
+    
+    if( $("#chartDefect")) {
+        
+         $("#chartDefect").data("kendoChart").options.series[0].data = datasource;
+        
+        //datasource = kendo.data.DataSource.create({
+        //                                                                                           data: datasource,
+        //                                                                                       }),
+       
+        
+        //$("#chartDefect").data("kendoChart").setDataSource(datasource);
+         $("#chartDefect").data("kendoChart").refresh();
+    }
+    
 }
     
 	return {
 		init: function(initEvt) {
             helper.addIntoSubDefect({id: 'report', fn: updateDatasourceChart});
-            
 			// ... init event code ...
             $("#chartDefect").kendoChart({
                 title: {
@@ -60,13 +79,15 @@ function updateDatasourceChart(e) {
                 },
                 series: [{
                     type: "pie",
-                    data: datasource
+                    data: []
                 }],
                 tooltip: {
                     visible: true,
                     format: "{0}%"
                 }
             });
+            
+            setTimeout(updateDatasourceChart, 0);
 		},
 
 		beforeShow: function(beforeShowEvt) {
