@@ -29,7 +29,9 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/c
             dataURL: '',
 
             onClickBack: function(e) {
-                phonegap.writeImageIntoSystem(this.get('dataURL'), $("imgDetail")[0], helper.goBack());
+                phonegap.writeImageIntoSystem(this.get('dataURL'), $("#imgDetail")[0], function() {
+                    helper.goBack();
+                });
 
             },
         }),

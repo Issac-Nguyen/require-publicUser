@@ -29,5 +29,5 @@ require(['app/app'], function(application) {
   }
 
   document.addEventListener("deviceready", onDeviceReady, false);
-  app.init();
+  //app.init();
 });

@@ -45,6 +45,21 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
             handleProcessDefect(getLocalStorage('isAutoProcessDefect'));
         }
     }
+    
+    function checkInternet() {
+
+    var networkState = navigator.connection.type;
+
+    if(networkState == Connection.NONE) {
+
+        //onConnexionError();
+        return false;
+
+    } else {
+
+       return true;
+    }
+}
 
     return {
         handlerErr: handlerErr,
@@ -344,6 +359,8 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         handleAutoProcessDefect: handleAutoProcessDefect,
         processAllInSubDefect: pubsub.processAllInSubDefect,
         addIntoSubDefect: pubsub.addIntoSubDefect,
-        removeFromSubDefect: pubsub.removeFromSubDefect
+        removeFromSubDefect: pubsub.removeFromSubDefect,
+checkInternet: checkInternet,
+        getDataAjax: resolveData.getDataAjax
     }
 });

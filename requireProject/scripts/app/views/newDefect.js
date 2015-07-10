@@ -24,7 +24,7 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                 }),
                 template: baseTemplate.templateImage,
                 click: function(e) {
-                    alert(JSON.stringify(e.dataItem));
+                    //alert(JSON.stringify(e.dataItem));
                     var item = e.dataItem;
                     imageDetailView.setDataIntoView(item);
                 }
@@ -35,6 +35,8 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
 
         beforeShow: function(beforeShowEvt) {
             // ... before show event code ...
+            if($("#listImage").length >0)
+                 $("#listImage").data("kendoMobileListView").refresh();
         },
 
         show: function(showEvt) {
@@ -42,6 +44,9 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
             //get id of defect
             if (this.model.get('id') == '')
                 this.model.set('id', helper.timestampString());
+            
+            //redraw listview
+           
         },
 
         viewModel: kendo.observable({
@@ -85,13 +90,13 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                 if (isDisableCapture)
                     return;
 
-                // phonegap.capturePicture(function(dataURL) {
-                //     alert(dataURL);
-                //     $("#listImage").data("kendoMobileListView").dataSource.add({
-                //         id: helper.timestampString(),
-                //         dataURL: dataURL
-                //     });
-                // });
+                 //phonegap.capturePicture(function(dataURL) {
+                     //alert(dataURL);
+                 //    $("#listImage").data("kendoMobileListView").dataSource.add({
+                 //        id: helper.timestampString(),
+                 //        dataURL: dataURL
+                 //    });
+                 //});
                 $("#listImage").data("kendoMobileListView").dataSource.add({
                     id: helper.timestampString(),
                     dataURL: "public/images/test.jpg"

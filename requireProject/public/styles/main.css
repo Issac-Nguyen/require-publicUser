@@ -368,9 +368,11 @@ body, html {
 }
 
 .k-invalid-msg {
-    display: block;
+    display: block !important;
     color: red;
     font-size: 12px;
+    border: none;
+    text-align: left;
 }
 
 .km-label-above {
