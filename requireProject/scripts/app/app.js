@@ -14,29 +14,30 @@ define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper', 'app/commo
 				init: function() {
 					var self = this;
 					this.showLoading();
-					 helper.initDatabase(function() {
-						 helper.getAllDefectData(function(data) {
+                    helper.registerPushNotification();
+					 //helper.initDatabase(function() {
+					//	 helper.getAllDefectData(function(data) {
 							 //common.defectsList = data;
-                              self.view().model.initDefectsList(data);
-							 helper.handleAutoProcessDefect();
-                             if(helper.checkInternet()) {
-                                helper.getDataAjax({
-                                    apiURL:'http://localhost:3000/PublicUserInfo',
-                        			format: 'JSON',
-                        			successCallback:function(data){
-                                        console.log(data);
-                                        self.hideLoading();
-                                    },
-                        			error: helper.handlerErr,
-                                });
-                             }  else {
+                      //        self.view().model.initDefectsList(data);
+						//	 helper.handleAutoProcessDefect();
+                          //   if(helper.checkInternet()) {
+                                //helper.getDataAjax({
+                                  //  apiURL:'http://localhost:3000/PublicUserInfo',
+                        			//format: 'JSON',
+                        			//successCallback:function(data){
+                                    //    console.log(data);
+                                        //self.hideLoading();
+                                    //},
+                        			//error: function() {self.hideLoading();},
+                                //});
+                            // }  else {
                                  self.hideLoading();
-                             }
+                             //}
 							
 							
-						 });
+						 //});
 
-					 });
+					 //});
 				}
 			});
 

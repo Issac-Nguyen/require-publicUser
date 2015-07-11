@@ -1,4 +1,4 @@
-define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/common', '../common/helper'], function(kendo, phonegap, baseTemplate, common, helper) {
+define(['kendo', '../phonegap/phonegap', '../common/common', '../common/helper'], function(kendo, phonegap, common, helper) {
     return {
         init: function(initEvt) {
             // ... init event code ...
@@ -30,6 +30,7 @@ define(['kendo', '../phonegap/phonegap', './template/baseTemplate', '../common/c
 
             onClickBack: function(e) {
                 phonegap.writeImageIntoSystem(this.get('dataURL'), $("#imgDetail")[0], function() {
+                   $("#listImage").data("kendoMobileListView").refresh();
                     helper.goBack();
                 });
 

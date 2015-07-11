@@ -14,6 +14,7 @@ define([], function() {
         objIntervalProcessDefect: objIntervalProcessDefect,
         intervalProcessDefect: 1000,
         maximumImageCapture: 1,
-        defectsList: []
+        defectsList: [],
+        pushNotification: window.plugins.pushNotification
 	}
 });

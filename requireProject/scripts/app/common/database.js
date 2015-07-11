@@ -107,7 +107,7 @@ define([], function() {
             failureCallback();
             return;
         }
-        var version = 8,
+        var version = 9,
             request = indexedDB.open("PublicUser", version);
 
         function installModels() {

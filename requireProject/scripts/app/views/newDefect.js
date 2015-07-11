@@ -1,4 +1,4 @@
-define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './template/baseTemplate', './defects', './imageDetail'], function(kendo, phonegap, common, database, helper, baseTemplate, defectsView, imageDetailView) {
+define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './defects', './imageDetail'], function(kendo, phonegap, common, database, helper, defectsView, imageDetailView) {
     var isDisableCapture = false;
     var validator;
 
@@ -35,8 +35,7 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
 
         beforeShow: function(beforeShowEvt) {
             // ... before show event code ...
-            if($("#listImage").length >0)
-                 $("#listImage").data("kendoMobileListView").refresh();
+            
         },
 
         show: function(showEvt) {
@@ -45,7 +44,6 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
             if (this.model.get('id') == '')
                 this.model.set('id', helper.timestampString());
             
-            //redraw listview
            
         },
 
@@ -90,18 +88,18 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                 if (isDisableCapture)
                     return;
 
-                 //phonegap.capturePicture(function(dataURL) {
-                     //alert(dataURL);
-                 //    $("#listImage").data("kendoMobileListView").dataSource.add({
-                 //        id: helper.timestampString(),
-                 //        dataURL: dataURL
-                 //    });
-                 //});
-                $("#listImage").data("kendoMobileListView").dataSource.add({
-                    id: helper.timestampString(),
-                    dataURL: "public/images/test.jpg"
-                });
-            }
+                 phonegap.capturePicture(function(dataURL) {
+                     alert(dataURL);
+                     $("#listImage").data("kendoMobileListView").dataSource.add({
+                         id: helper.timestampString(),
+                         dataURL: dataURL
+                     });
+                 });
+               // $("#listImage").data("kendoMobileListView").dataSource.add({
+               //     id: helper.timestampString(),
+               //     dataURL: "public/images/test.jpg"
+               // });
+            },
         }),
     }
 });

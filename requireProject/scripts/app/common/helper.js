@@ -24,6 +24,20 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         database.start(cb, handlerErr);
     }
     
+    function registerPushNotification() {
+        common.pushNotification.register(function(token){setLocalStorage('token', token)}, handlerErr, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});
+    }
+    
+    function onNotificationAPN(e) {
+                if (e.alert) {
+                     alert('alert');
+                }
+
+                if (e.badge) {
+					alert('badge');
+                }
+            }
+    
     function setLocalStorage(pro, vl) {
         localStorage[pro] = vl;
     }
@@ -31,6 +45,8 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
     function getLocalStorage(pro) {
         return localStorage[pro];
     }
+    
+    
     
     function handleProcessDefect(onOff) {
         onOff = onOff == "true"? 1 : 0;
@@ -361,6 +377,7 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         addIntoSubDefect: pubsub.addIntoSubDefect,
         removeFromSubDefect: pubsub.removeFromSubDefect,
 checkInternet: checkInternet,
-        getDataAjax: resolveData.getDataAjax
+        getDataAjax: resolveData.getDataAjax,
+        registerPushNotification: registerPushNotification
     }
 });
