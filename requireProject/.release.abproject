@@ -1,5 +1,6 @@
 {
   "CorePlugins": [
+    "com.phonegap.plugins.PushPlugin@2.5.8",
     "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
     "org.apache.cordova.contacts",

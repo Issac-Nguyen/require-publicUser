@@ -38,7 +38,7 @@ define(['../common/helper', '../common/common'], function(helper, common) {
                     exclusive: false
                 }, function(fileEntry) {
                     fileEntry.createWriter(function(writer) {
-                        alert(canvas.toDataURL('image/jpeg', 1));
+                        //alert(canvas.toDataURL('image/jpeg', 1));
                         writer.write(helper.convertDataURIToBlob(canvas.toDataURL('image/jpeg', 1), 'image/jpeg'));
                         if(cb)
                             cb();
