@@ -10,7 +10,7 @@ define(["jQuery", './database'], function($, database) {
 			method: options.method,
 			jsonpCallback: options.jsonpCallback,
 			success: options.successCallback || renderData,
-			error: null,
+			error: options.errorCallback,
 			timeout: options.timeout
 		});
 	}
