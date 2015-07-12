@@ -1,4 +1,4 @@
-define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './defects', './imageDetail'], function(kendo, phonegap, common, database, helper, defectsView, imageDetailView) {
+define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './template/baseTemplate', './defects', './imageDetail'], function(kendo, phonegap, common, database, helper, baseTemplate, defectsView, imageDetailView) {
     var isDisableCapture = false;
     var validator;
 
@@ -100,6 +100,10 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                //     dataURL: "public/images/test.jpg"
                // });
             },
+            refreshListImage: function() {
+                if($("#listImage").length > 0)
+                     $("#listImage").data("kendoMobileListView").refresh();
+            }
         }),
     }
 });

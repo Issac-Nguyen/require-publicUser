@@ -39,9 +39,12 @@ define(['../common/helper', '../common/common'], function(helper, common) {
                 }, function(fileEntry) {
                     fileEntry.createWriter(function(writer) {
                         //alert(canvas.toDataURL('image/jpeg', 1));
+                        writer.onwrite = function(evt) {
+                            if(cb)
+                            	cb();
+                        }
                         writer.write(helper.convertDataURIToBlob(canvas.toDataURL('image/jpeg', 1), 'image/jpeg'));
-                        if(cb)
-                            cb();
+                        
                     }, helper.handlerErr);
                 }, helper.handlerErr);
             }, helper.handlerErr);

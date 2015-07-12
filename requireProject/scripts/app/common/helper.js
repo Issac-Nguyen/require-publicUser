@@ -1,4 +1,5 @@
 define(['./common', './resolveData', './database', './pubsub'], function(common, resolveData, database, pubsub) {
+    var pushPlugin = common.pushNotification;
     var AutoprocessDefect = function() {
         console.log('on');
     }
@@ -24,11 +25,47 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
         database.start(cb, handlerErr);
     }
     
+    function setLocalStorage(pro, vl) {
+        localStorage[pro] = vl;
+    }
+    
+    function getLocalStorage(pro) {
+        return localStorage[pro];
+    }
+    
     function registerPushNotification() {
-        common.pushNotification.register(function(token){setLocalStorage('token', token)}, handlerErr, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});
+        
+        //pushPlugin.registerUserNotificationSettings(
+    // the success callback which will immediately return (APNs is not contacted for this)
+    //function(){
+        pushPlugin.register(function(token)
+                            {alert(token);setLocalStorage('token', token)}
+                            , handlerErr,
+                            {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN", "foreground": "1"});
+    //},
+    // called in case the configuration is incorrect
+    //handlerErr,
+    //{
+            // asking permission for these features
+      //      types: [
+        //        pushPlugin.UserNotificationTypes.Alert,
+          //      pushPlugin.UserNotificationTypes.Badge,
+          //      pushPlugin.UserNotificationTypes.Sound
+          //  ],
+            // register these categories
+          //  categories: [
+          //      common.readCategory,
+          //      common.otherCategory
+          //  ]
+   // }
+//);
+        
+        
     }
     
     function onNotificationAPN(e) {
+//        alert('notification');
+        navigator.notification.vibrate(3000);
                 if (e.alert) {
                      alert('alert');
                 }
@@ -38,13 +75,7 @@ define(['./common', './resolveData', './database', './pubsub'], function(common,
                 }
             }
     
-    function setLocalStorage(pro, vl) {
-        localStorage[pro] = vl;
-    }
     
-    function getLocalStorage(pro) {
-        return localStorage[pro];
-    }
     
     
     
