@@ -4,12 +4,12 @@ define([], function() {
 	var windowHeight = window.innerHeight;
     var objIntervalProcessDefect;
     
-    var pushPlugin = window.plugins.pushNotification;
+   // var pushPlugin = window.plugins.pushNotification;
     
     var readAction = {
     identifier: 'READ_IDENTIFIER', // mandatory
     title: 'Read', // mandatory
-    activationMode: pushPlugin.UserNotificationActivationMode.Foreground, // default: Background
+    //activationMode: pushPlugin.UserNotificationActivationMode.Foreground, // default: Background
     destructive: false, // default: false
     authenticationRequired: false // default: false
 };
@@ -57,8 +57,9 @@ var otherCategory = {
         intervalProcessDefect: 1000,
         maximumImageCapture: 1,
         defectsList: [],
-        pushNotification: pushPlugin,
+       // pushNotification: pushPlugin,
         readCategory: readCategory,
-        otherCategory: otherCategory
+        otherCategory: otherCategory,
+        urlServerData: 'http://localhost:3000',
 	}
 });

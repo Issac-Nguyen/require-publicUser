@@ -1,4 +1,4 @@
-define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './template/baseTemplate', './defects', './imageDetail'], function(kendo, phonegap, common, database, helper, baseTemplate, defectsView, imageDetailView) {
+define(['kendo', '../common/UI', '../phonegap/phonegap', '../common/common', '../common/database', '../common/helper', './template/baseTemplate', './defects', './imageDetail'], function(kendo, UI, phonegap, common, database, helper, baseTemplate, defectsView, imageDetailView) {
     var isDisableCapture = false;
     var validator;
 
@@ -29,6 +29,14 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                     imageDetailView.setDataIntoView(item);
                 }
             });
+            
+            UI.buildDropDownList('drBuilding', {});
+            UI.buildDropDownList('drCategory', {});
+            UI.buildDropDownList('drSubCategory', {});
+            UI.buildDropDownList('drZone', {});
+            UI.buildDropDownList('drFloor', {});
+            UI.buildDatepicker('expectedCompleteDate', {format: "dd/MM/yyyy",value: new Date()});
+            
 
             validator = $("#form-newDefect").kendoValidator().data("kendoValidator");
         },
@@ -88,17 +96,17 @@ define(['kendo', '../phonegap/phonegap', '../common/common', '../common/database
                 if (isDisableCapture)
                     return;
 
-                 phonegap.capturePicture(function(dataURL) {
-                     alert(dataURL);
-                     $("#listImage").data("kendoMobileListView").dataSource.add({
-                         id: helper.timestampString(),
-                         dataURL: dataURL
-                     });
-                 });
-               // $("#listImage").data("kendoMobileListView").dataSource.add({
-               //     id: helper.timestampString(),
-               //     dataURL: "public/images/test.jpg"
-               // });
+                 //phonegap.capturePicture(function(dataURL) {
+                 //    alert(dataURL);
+                 //    $("#listImage").data("kendoMobileListView").dataSource.add({
+                 //        id: helper.timestampString(),
+                 //        dataURL: dataURL
+                 //    });
+                 //});
+                $("#listImage").data("kendoMobileListView").dataSource.add({
+                    id: helper.timestampString(),
+                    dataURL: "public/images/test.jpg"
+                });
             },
             refreshListImage: function() {
                 if($("#listImage").length > 0)

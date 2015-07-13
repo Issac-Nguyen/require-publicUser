@@ -29,12 +29,7 @@ require(['app/app'], function(application) {
   }
 
   document.addEventListener("deviceready", onDeviceReady, false);
-<<<<<<< HEAD
-  app.init();
+  //app.init();
 });
 
 //efd1e17df8ad028a4c65709c25da8b44ab1db0cc8bb2c7b2158446a29bc6553c
-=======
-  //app.init();
-});
->>>>>>> origin/master

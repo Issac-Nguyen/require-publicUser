@@ -14,7 +14,7 @@ define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper', 'app/commo
 				init: function() {
 					var self = this;
 					this.showLoading();
-                    helper.registerPushNotification();
+                    //helper.registerPushNotification();
 					 //helper.initDatabase(function() {
 					//	 helper.getAllDefectData(function(data) {
 							 //common.defectsList = data;
@@ -22,7 +22,7 @@ define(['jQuery', 'kendo', 'app/views/baseView', 'app/common/helper', 'app/commo
 						//	 helper.handleAutoProcessDefect();
                           //   if(helper.checkInternet()) {
                                 //helper.getDataAjax({
-                                  //  apiURL:'http://localhost:3000/PublicUserInfo',
+                                  //  apiURL: common.urlServerData + '/PublicUserInfo',
                         			//format: 'JSON',
                         			//successCallback:function(data){
                                     //    console.log(data);
