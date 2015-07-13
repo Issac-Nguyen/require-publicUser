@@ -1,4 +1,4 @@
-define(['./common', './resolveData', './database', './pubsub'], function(common, resolveData, database, pubsub) {
+define(['./common', './resolveData', './sqlite', './pubsub'], function(common, resolveData, database, pubsub) {
     var pushPlugin = common.pushNotification;
     var AutoprocessDefect = function() {
         console.log('on');
